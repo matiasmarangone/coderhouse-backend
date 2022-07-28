@@ -2,11 +2,11 @@ const Contenedor = require("./contenedor");
 
 const container = new Contenedor('./prueba.txt')
 
-//container.save({nombre:'Gorra2', precio: 100})
+//container.save({nombre:'Jean', precio: 300})
 
 //container.getById(1);
 
-//container.getAll();
+container.getAll();
 
 //container.deleteById(3);
 
