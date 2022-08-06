@@ -21,7 +21,14 @@ app.get('/',(req,res) => {
 })
 
 
-app.get('/productos',(req,res) => {
-      res.send(arr1)
+app.get('/productos', async (req,res) => {
+      let arr1 = await container.getAll();
+      res.status(200).json(arr1);
 })
 
+app.get('/productosRandom', async (req,res) => {
+    let arr2 = await container.getAll();
+    var item = arr2[Math.floor(Math.random()*arr2.length)];
+    //res.status(200).json(item);
+    res.send({item});
+})
