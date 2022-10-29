@@ -22,6 +22,23 @@ class Contenedor {
 
     }
 
+    async updateById(obj) {
+        try {
+            let dataArch = await fs.promises.readFile(this.route, 'utf8');
+            let dataArchParse = JSON.parse(dataArch);
+            if(dataArchParse.length){
+                await fs.promises.writeFile(this.route, JSON.stringify([...dataArchParse, {...obj, id: dataArchParse.length+1}], null, 2))
+            }else{
+                await fs.promises.writeFile(this.route, JSON.stringify([{...obj, id: dataArchParse.length+1}], null, 2))
+            }
+            
+            return dataArchParse.length+1;
+        } catch (error) {
+            console.log(error)
+        }
+
+    }
+
     async getById(id){
         try {
             let dataArch = await fs.promises.readFile(this.route, 'utf8');
