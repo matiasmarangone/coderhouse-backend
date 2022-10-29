@@ -1,22 +1,15 @@
 const express = require('express')
+
 const app = express()
-const { Router } = express
+const PORT = process.env.PORT || 4000
 
-//-----------------Puerto--------------------------
-const PORT = 8080
-const server = app.listen(PORT,()=>{
-    console.log("hola")
-})
-
-
+app.use(express.json())
 app.use(express.static('public'))
-app.use(express.urlencoded({extended: true}))
 
-const routerProductos = Router()
-
-routerProductos.put('/:id', (req, res) => {
-    const { title, price, thumbnail} = req.body
-    
+app.get('/', (req, resp) => {
+    resp.send('Hello World')
 })
 
-app.use('/api/productos', routerProductos)
+app.listen(PORT, () => {
+    console.log('Server is running on port 4000')
+})
